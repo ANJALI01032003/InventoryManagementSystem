@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("header.ejs")%>
+    <br><br>
+
+    <form name="frm" action="/validate" method="post">
+
+        <div class="container bg-dark p-5">
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="username" value="" placeholder="Enter UserName" />
+        </div>
+        <br>
+
+        <br>
+
+         <div class="form-group">
+            <input type="text" class="form-control" name="password" value="" placeholder="Enter Password" />
+        </div>
+        <br>
+
+         <div class="form-group">
+            <input type="submit" class="btn btn-primary control form-control" name="s" value="Login" />
+        </div>
+        <br>
+        
+        <div class="form-group">
+            <a href="/register" class="btn btn-primary control form-control">Register</a>
+        </div>
+        <br>
+        <br>
+
+        <!-- <%=msg%> -->
+
+        <%
+        if(msg.length!=0)
+        {
+        %>
+        <div class="alert alert-primary" role="alert">
+            <%=msg%>
+        </div>
+        <%
+        }
+        %>  
+    <!-- <input type="text" name="name" value="" style="width: 400px;height: 50px;"><br><br>
+    <input type="text" name="pass" value="" style="width: 400px;height: 50px;"><br><br>
+    <input type="submit" value="Login" style="width: 400px;height: 50px;" /> -->
+    </form>
+</body>
+</html>

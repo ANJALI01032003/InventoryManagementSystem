@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+       <%- include("viewprofile.ejs", { loginUserName: loginUserName })%>
+          <br><br>
+
+   <form name="frm" action="/saveReg" method="post" enctype="multipart/form-data">
+    <div class="container bg-dark p-5">
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" value="<%=u.name%>" placeholder="Enter Name" />
+        </div>
+        <br>
+
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" value="<%=u.email%>" placeholder="Enter Email" />
+        </div>
+        <br>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="contact" value="<%=u.contact%>" placeholder="Enter Contact" />
+        </div>
+        <br>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="username" value="<%=u.username%>" placeholder="Enter UserName" />
+        </div>
+        <br>
+
+         <div class="form-group">
+            <input type="text" class="form-control" name="password" value="<%=u.pass%>" placeholder="Enter Password" />
+        </div>
+        <br>
+
+         <div class="form-group">
+            <img src="/images/<%=u.profile%>" width="100px"; height="100px" alt="image not found">
+        </div>
+        <br><br>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary control form-control" name="s" value="Update Profile"/>
+        </div>
+        <br>
+ </div> 
+
+    </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+digraph "ER Diagram" {
+	rankdir=LR size="8,5"
+	User [label="{User|uid (PK)\lname\lemail\lpass\lrole}" shape=record]
+	Category [label="{Category|cid (PK)\lname}" shape=record]
+	Supplier [label="{Supplier|sid (PK)\lname\lcontact\laddress}" shape=record]
+	Product [label="{Product|pid (PK)\lname\lcid (FK)\lsid (FK)\lprice\lquant}" shape=record]
+	StockTransaction [label="{StockTransaction|tid (PK)\lpid (FK)\luid (FK)\ltype\lquant\ltdate}" shape=record]
+	Sale [label="{Sale|slid (PK)\lpid (FK)\luid (FK)\lquant\ltotlprs\lsldate}" shape=record]
+	Product -> Category [label=cid]
+	Product -> Supplier [label=sid]
+	StockTransaction -> Product [label=pid]
+	StockTransaction -> User [label=uid]
+	Sale -> Product [label=pid]
+	Sale -> User [label=uid]
+}
