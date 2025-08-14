@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+     <%- include("../admin/admindashboard.ejs") %>
+    <br><br>
+
+    <form name="frm" action="/product/addprod" method="post">
+        <div class="container bg-dark text-light p-5 rounded">
+            <h2 class="text-center">Add New Product</h2>
+            <br>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" placeholder="Enter Product Name" required />
+            </div>
+
+            <div class="form-group">
+                <input type="number" class="form-control" name="cid" placeholder="Enter Category ID (cid)" required />
+            </div>
+
+            <div class="form-group">
+                <input type="number" class="form-control" name="sid" placeholder="Enter Supplier ID (sid)" required />
+            </div>
+
+            <div class="form-group">
+                <input type="number" step="0.01" class="form-control" name="price" placeholder="Enter Product Price" required />
+            </div>
+
+            <div class="form-group">
+                <input type="number" class="form-control" name="quant" placeholder="Enter Product Quantity" required />
+            </div>
+
+            <div class="form-group">
+                <input type="number" class="form-control" name="minqty" placeholder="Enter Minimum Quantity" required />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary form-control" value="Add Product" />
+            </div>
+
+            <% if (msg && msg.length !== 0) { %>
+                <div class="alert alert-info text-center">
+                    <%= msg %>
+                </div>
+            <% } %>
+
+        </div>
+    </form>
+
+</body>
+</html>

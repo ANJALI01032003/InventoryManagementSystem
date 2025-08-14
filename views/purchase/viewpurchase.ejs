@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Purchases</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<%- include("../header.ejs") %>
+
+<div class="container mt-4">
+  <h2 class="mb-3 text-center">All Purchases</h2>
+
+  <% if (msg) { %>
+    <div class="alert alert-info text-center"><%= msg %></div>
+  <% } %>
+
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Invoice No</th>
+        <th>Purchase Date</th>
+        <th>Supplier ID</th>
+        <th>Items</th>
+        <th>Total Amount</th>
+        <th>Payment Mode</th>
+        <th>GST Invoice</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+         <% if (purchases && purchases.length > 0) { %>
+          <% purchases.forEach((row, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= row.invoiceNo %></td>
+           <td><%= row.purchaseDate ? new Date(row.purchaseDate).toISOString().split('T')[0] : '' %></td>
+<td><%= row.sid %></td>
+
+            <!-- Parse JSON items -->
+            <td>
+  <ul class="mb-0">
+    <% if (row.items && Array.isArray(row.items)) { %>
+      <% JSON.parse(row.items).forEach(item => { %>
+        <li>Product ID: <%= item.productId %>, Qty: <%= item.quantity %></li>
+      <% }) %>
+    <% } else { %>
+      <li>No items</li>
+    <% } %>
+  </ul>
+</td>
+
+
+            <td>₹<%= row.totalAmount %></td>
+            <td><%= row.paymentMode %></td>
+            <td><%= row.gstInvoice %></td>
+            <td>
+              <form method="POST" action="/purchase/delete/<%= row.id %>?_method=DELETE">
+                <button class="btn btn-danger btn-sm" onclick="return confirm('Confirm delete?')">Delete</button>
+              </form>
+            </td>
+            <td>
+              <form method="POST" action="/purchase/update/<%= row.id %>?_method=PUT">
+               <button class="btn btn-warning btn-sm">Update</button>
+             </form>
+            </td>
+
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="9" class="text-center">No purchases found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

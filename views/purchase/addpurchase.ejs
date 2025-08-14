@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Purchase</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <%- include("../admin/admindashboard.ejs") %>
+    <br><br>
+
+    <form name="frm" action="/purchase/add" method="post">
+        <div class="container bg-dark text-light p-5 rounded">
+            <h2 class="text-center">Add New Purchase</h2>
+            <br>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="invoiceNo" placeholder="Enter Invoice Number" required />
+            </div>
+
+            <div class="form-group">
+                <input type="date" class="form-control" name="purchaseDate" required />
+            </div>
+
+            <div class="form-group">
+                <input type="number" class="form-control" name="sid" placeholder="Enter Supplier ID" required />
+            </div>
+
+            <div class="form-group">
+                <textarea class="form-control" name="items" placeholder="Enter Purchased Items (JSON format)" required></textarea>
+                <small class="text-light">Example: [{"product":"Pen","qty":10,"price":5}]</small>
+            </div>
+
+            <div class="form-group">
+                <input type="number" step="0.01" class="form-control" name="totalAmount" placeholder="Enter Total Amount" required />
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" name="paymentMode" required>
+                    <option value="">Select Payment Mode</option>
+                    <option value="Cash">Cash</option>
+                    <option value="Card">Card</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" name="gstInvoice" required>
+                    <option value="">GST Invoice?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary form-control" value="Add Purchase" />
+            </div>
+
+            <% if (msg && msg.length !== 0) { %>
+                <div class="alert alert-info text-center">
+                    <%= msg %>
+                </div>
+            <% } %>
+
+        </div>
+    </form>
+
+</body>
+</html>
